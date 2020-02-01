@@ -42,7 +42,7 @@ class TasksController extends Controller
             'status'=>'required|max:10',
             ]);
         $this->validate($request,[
-            'task'=>'required',
+            'content'=>'required',
             ]);
         $task=new Task;
         $task->content=$request->content;
@@ -89,7 +89,7 @@ class TasksController extends Controller
             'status'=>'required|max:10',
             ]);
         $this->validate($request,[
-            'task'=>'required',
+            'content'=>'required',
             ]);
         $task=Task::find($id);
         $task->content=$request->content;
