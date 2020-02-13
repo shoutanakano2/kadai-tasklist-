@@ -2,7 +2,7 @@
 <html lang="ja">
     <head>
         <meta charset="utf-8">
-        <title>MessageBoard</title>
+        <title>Tasklists</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
     </head>
@@ -10,12 +10,12 @@
     <body>
         <header class="mb-4">
             <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-                <a class="navbar-brand" href="/">MessageBoard</a>
-                
+                <a class="navbar-brand" href="/">Tasklist</a>
+
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav-bar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+
                 <div class="collapse navbar-collapse" id="nav-bar">
                     <ul class="navbar-nav mr-auto"></ul>
                     <ul class="navbar-nav">
@@ -24,8 +24,12 @@
                 </div>
             </nav>
         </header>
+
+        /*@include('commons.navbar')*/
         
         <div class="container">
+            /*@include('commons.error_messages')*/
+            
             @yield('content')
         </div>
         
@@ -35,3 +39,4 @@
         <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js"></script>
     </body>
 </html>
+
