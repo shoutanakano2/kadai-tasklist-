@@ -89,6 +89,9 @@ class TasksController extends Controller
      */
     public function show($id)
     {
+        
+        $task=\App\Task::find($id);
+        if(\Auth::id() ===$task->user_id){
         $task = Task::find($id);
 
         $data = [
@@ -97,6 +100,7 @@ class TasksController extends Controller
 
 
         return view('tasks.show', $data);
+    }
     }
 
     /**
@@ -120,6 +124,9 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
+        $task=\App\Task::find($id);
+        if(\Auth::id() ===$task->user_id){
        
         $this->validate($request,[
             'status'=>'required|max:10',
@@ -135,6 +142,7 @@ class TasksController extends Controller
         $task->save();
         return redirect('/');
         
+    }
     }
 
     /**
