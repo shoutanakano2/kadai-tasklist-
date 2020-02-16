@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Task;
+use App\User;
 
 class TasksController extends Controller
 {
@@ -24,9 +25,12 @@ class TasksController extends Controller
                 'user' => $user,
                 'tasks' => $tasks,
             ];
+            
+            return view('tasks.index', $data);
         }
-        
-        return view('welcome', $data);
+        else{
+            return view('welcome',$data);
+        }
     }
 
     /**
@@ -85,18 +89,14 @@ class TasksController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        $tasks = $user->tasks()->orderBy('created_at', 'desc')->paginate(10);
+        $task = Task::find($id);
 
         $data = [
-            'user' => $user,
-            'tasks' => $tasks,
-            
+            'task' => $task,
         ];
 
-        $data += $this->counts($user);
 
-        return view('users.show', $data);
+        return view('tasks.show', $data);
     }
 
     /**
@@ -120,6 +120,7 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
+       
         $this->validate($request,[
             'status'=>'required|max:10',
             ]);
@@ -129,7 +130,8 @@ class TasksController extends Controller
         $task=Task::find($id);
         $task->content=$request->content;
         $task->status=$request->status;
-        $task->user_id=$request->user_id;
+        
+  
         $task->save();
         return redirect('/');
         
@@ -147,6 +149,6 @@ class TasksController extends Controller
         if(\Auth::id() ===$task->user_id){
             $task->delete();
         }
-        return back();
+        return redirect('/');
     }
 }
