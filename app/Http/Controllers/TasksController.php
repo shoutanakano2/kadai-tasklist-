@@ -63,7 +63,7 @@ class TasksController extends Controller
             'content' => $request->content,
         ]);
         
-        return back();
+        return redirect('/');
         
         
         /*$this->validate($request,[
@@ -99,8 +99,10 @@ class TasksController extends Controller
         ];
 
 
-        return view('tasks.show', $data);
-    }
+        return view('tasks.show', $data);}
+        else{
+            return view('welcome',$data);
+        }
     }
 
     /**
@@ -111,8 +113,11 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
+        $task=\App\Task::find($id);
+        if(\Auth::id() ===$task->user_id){        
         $task=Task::find($id);
-        return view('tasks.edit',['task'=>$task,]);
+        return redirect('/');
+    }
     }
 
     /**
