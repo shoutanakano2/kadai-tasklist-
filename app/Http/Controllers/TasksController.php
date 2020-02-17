@@ -101,7 +101,7 @@ class TasksController extends Controller
 
         return view('tasks.show', $data);}
         else{
-            return view('welcome',$data);
+            return redirect('/');
         }
     }
 
